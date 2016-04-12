@@ -3,7 +3,6 @@ package com.fontys.softwarecraftsmanship;
 import com.fontys.softwarecraftsmanship.parttypes.Casing;
 import com.fontys.softwarecraftsmanship.parttypes.Memory;
 import com.fontys.softwarecraftsmanship.parttypes.Motherboard;
-import com.fontys.softwarecraftsmanship.parttypes.Part;
 import com.fontys.softwarecraftsmanship.parttypes.Processor;
 import java.io.PrintStream;
 

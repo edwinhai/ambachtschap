@@ -1,11 +1,7 @@
 package com.fontys.softwarecraftsmanship.parttypes;
 
 import com.fontys.softwarecraftsmanship.wrapper.Price;
-import com.fontys.softwarecraftsmanship.wrapper.Size;
-import com.fontys.softwarecraftsmanship.wrapper.Speed;
-import com.fontys.softwarecraftsmanship.wrapper.SubType;
 import com.fontys.softwarecraftsmanship.wrapper.Title;
-import com.fontys.softwarecraftsmanship.wrapper.Type;
 
 public class Part {
     
