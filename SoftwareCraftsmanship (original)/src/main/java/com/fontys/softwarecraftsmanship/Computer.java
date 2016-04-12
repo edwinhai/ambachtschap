@@ -1,31 +1,37 @@
 package com.fontys.softwarecraftsmanship;
 
+import com.fontys.softwarecraftsmanship.parttypes.Casing;
+import com.fontys.softwarecraftsmanship.parttypes.Memory;
+import com.fontys.softwarecraftsmanship.parttypes.Motherboard;
 import com.fontys.softwarecraftsmanship.parttypes.Part;
+import com.fontys.softwarecraftsmanship.parttypes.Processor;
+import com.fontys.softwarecraftsmanship.wrapper.PartsCollection;
 import java.util.*;
 
 public class Computer {
     
-    List<Part> parts = new ArrayList<>();
+    PartsCollection parts = new PartsCollection();
     
     public int NumberOfParts() {
         int count = 0;
-        for (Part p : parts) { 
+        for (Part part : parts.parts) { 
             count++;
         }
         return count;
     }
     
-    public void AddPart(Part p) {
-        if(p != null){
-            parts.add(p);
+    public void AddPart(Part part) {
+        List<Part> usedParts = parts.parts;
+        if(part != null){
+            usedParts.add(part);
         }
     }
     
     public double GetPrice() {
         double price = 0.0;
-        
-        for (int i = 0; i < NumberOfParts(); i++) {
-            Part part = parts.get(i);
+        List<Part> usedParts = parts.parts;
+        for (int integer = 0; integer < NumberOfParts(); integer++) {
+            Part part = usedParts.get(integer);
             price += part.GetPrice();
         }
         
@@ -38,31 +44,29 @@ public class Computer {
         boolean hasMemory = false;
         boolean hasMotherboard = false;
         
-        for (Part part : parts) {
-            if (part.GetType().equals("Casing")) {
+        for (Part part : parts.parts) {
+            if(part instanceof Casing) {
                 hasCasing = true;
+                continue;
             }
-            else {
-                if (part.GetType().equals("Processor")) {
-                    hasProcessor = true;
-                }
-                else {
-                    if (part.GetType().equals("Memory")) {
-                        hasMemory = true;
-                    }
-                    else {
-                        if (part.GetType().equals("Motherboard")) {
-                            hasMotherboard = true;
-                        }
-                    }
-                }
+            if(part instanceof Processor) {
+                hasProcessor = true;
+                continue;
             }
+            if(part instanceof Memory) {
+                hasMemory = true;
+                continue;
+            }
+            if(part instanceof Motherboard) {
+                hasMotherboard = true;
+            }
+
         }
         
-        if (!hasCasing || !hasProcessor || !hasMemory || !hasMotherboard) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(!hasCasing || !hasProcessor || !hasMemory || !hasMotherboard);
+    }
+    
+    private void validateComputer() {
+        
     }
 }
