@@ -1,5 +1,6 @@
 package com.fontys.softwarecraftsmanship;
 
+import com.fontys.softwarecraftsmanship.parttypes.Part;
 import java.util.*;
 
 public class Computer {
@@ -15,7 +16,9 @@ public class Computer {
     }
     
     public void AddPart(Part p) {
-        parts.add(p);
+        if(p != null){
+            parts.add(p);
+        }
     }
     
     public double GetPrice() {

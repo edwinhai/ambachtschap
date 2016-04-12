@@ -1,5 +1,6 @@
 package com.fontys.softwarecraftsmanship;
 
+import com.fontys.softwarecraftsmanship.parttypes.Part;
 import static org.junit.Assert.*;
 import java.util.*;
 
