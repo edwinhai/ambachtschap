@@ -22,36 +22,4 @@ public class PartsCollection {
 
     public PartsCollection() {
     }
-    
-    public boolean containsCasing() {
-        for (Part part : parts) {
-            if (part instanceof Casing) return true;            
-        }
-        
-        return false;
-    }
-    
-    public boolean containsProcessor() {
-        for (Part part : parts) {
-            if (part instanceof Processor) return true;            
-        }
-        
-        return false;
-    }
-    
-    public boolean containsMemory() {
-        for (Part part : parts) {
-            if (part instanceof Memory) return true;            
-        }
-        
-        return false;
-    }
-    
-    public boolean containsMotherboard() {
-        for (Part part : parts) {
-            if (part instanceof Motherboard) return true;            
-        }
-        
-        return false;
-    }
 }

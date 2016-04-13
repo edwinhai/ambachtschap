@@ -1,8 +1,13 @@
 package com.fontys.softwarecraftsmanship;
 
+import com.fontys.softwarecraftsmanship.parttypes.Casing;
+import com.fontys.softwarecraftsmanship.parttypes.Memory;
+import com.fontys.softwarecraftsmanship.parttypes.Motherboard;
 import com.fontys.softwarecraftsmanship.parttypes.Part;
+import com.fontys.softwarecraftsmanship.parttypes.Processor;
 import com.fontys.softwarecraftsmanship.wrapper.PartsCollection;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Computer {
     
@@ -35,11 +40,32 @@ public class Computer {
     }
     
     public boolean IsComplete() {
-        boolean hasCasing = parts.containsCasing();
-        boolean hasProcessor = parts.containsProcessor();
-        boolean hasMemory = parts.containsMemory();
-        boolean hasMotherboard = parts.containsMotherboard();
-        
-        return !(!hasCasing || !hasProcessor || !hasMemory || !hasMotherboard);
+        List<Part> currentParts = parts.parts;
+
+        return (getNumberOfParts(currentParts,"Casing") > 0
+                && getNumberOfParts(currentParts,"Processor") > 0
+                && getNumberOfParts(currentParts,"Memory") > 0 
+                && getNumberOfParts(currentParts,"Motherboard") > 0);
     }
+    
+    public long getNumberOfParts(List<Part> parts, String type) {
+        Stream<Part> partStream = parts.stream();
+        Stream<Part> newStream = null;
+        switch(type) {
+            case "Casing":
+                newStream = partStream.filter(x -> x instanceof Casing);
+                break;
+            case "Processor":
+                newStream = partStream.filter(x -> x instanceof Processor);
+                break;
+            case "Memory":
+                newStream = partStream.filter(x -> x instanceof Memory);
+                break;
+            case "Motherboard":
+                newStream = partStream.filter(x -> x instanceof Motherboard);
+                break;
+        }
+        return newStream.count();
+    }
+
 }
