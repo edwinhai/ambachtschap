@@ -1,10 +1,6 @@
 package com.fontys.softwarecraftsmanship;
 
-import com.fontys.softwarecraftsmanship.parttypes.Casing;
-import com.fontys.softwarecraftsmanship.parttypes.Memory;
-import com.fontys.softwarecraftsmanship.parttypes.Motherboard;
 import com.fontys.softwarecraftsmanship.parttypes.Part;
-import com.fontys.softwarecraftsmanship.parttypes.Processor;
 import com.fontys.softwarecraftsmanship.wrapper.PartsCollection;
 import java.util.*;
 
@@ -39,34 +35,11 @@ public class Computer {
     }
     
     public boolean IsComplete() {
-        boolean hasCasing = false;
-        boolean hasProcessor = false;
-        boolean hasMemory = false;
-        boolean hasMotherboard = false;
-        
-        for (Part part : parts.parts) {
-            if(part instanceof Casing) {
-                hasCasing = true;
-                continue;
-            }
-            if(part instanceof Processor) {
-                hasProcessor = true;
-                continue;
-            }
-            if(part instanceof Memory) {
-                hasMemory = true;
-                continue;
-            }
-            if(part instanceof Motherboard) {
-                hasMotherboard = true;
-            }
-
-        }
+        boolean hasCasing = parts.containsCasing();
+        boolean hasProcessor = parts.containsProcessor();
+        boolean hasMemory = parts.containsMemory();
+        boolean hasMotherboard = parts.containsMotherboard();
         
         return !(!hasCasing || !hasProcessor || !hasMemory || !hasMotherboard);
-    }
-    
-    private void validateComputer() {
-        
     }
 }
